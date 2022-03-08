@@ -1,10 +1,12 @@
 #V1     first usage of the NEF Em 
 #V1.1   Request for localisation and QoS
-version = "1.1"
+version = "1.4"
+
+#run main app with 'uvicorn main:app --port 8000 --reload'
 
 from fastapi import FastAPI, File, UploadFile
 
-emulatorIP= "http://192.168.0.30:8888"
+emulatorIP= "http://localhost:8888"
 
 class bcolors:
     HEADER = '\033[95m'
@@ -29,3 +31,15 @@ def print_initmess():
     print(mess)
     print(bcolors.BOLD + bcolors.OKBLUE + " => VERSION OF THE NETAPP : " + bcolors.OKGREEN + version)
 
+def return_defaultMess():
+    return """
+    <html>
+        <head>
+            <title>GMI AERO NetApp</title>
+        </head>
+        <body>
+            <h1>GMI AERO NetApp</h1><br>
+            <h2>=> Please select correct route</h2>
+        </body>
+    </html>
+    """
