@@ -22,7 +22,7 @@ services:
     ports:
       # If port mapping is needed, left is host side and right is container side according to https://docs.docker.com/compose/compose-file/#ports
       # Be careful: if no mapping is specified, Docker will use a random available port on container side!
-      - "9876:9876"
+      - "8000:8000"
 
 
 # network bridge with nef_emulator_default to be able to reach the NEF emulator 
