@@ -1,12 +1,13 @@
 #V1     first usage of the NEF Em 
 #V1.1   Request for localisation and QoS
-version = "1.4"
+#V2.0   With SDK and .env file
+version = "2.0"
 
 #run main app with 'uvicorn main:app --port 8000 --reload'
 
 from fastapi import FastAPI, File, UploadFile
 
-emulatorIP= "http://localhost:8888"
+#emulatorIP= "http://localhost:8888"        => now in .env
 
 class bcolors:
     HEADER = '\033[95m'

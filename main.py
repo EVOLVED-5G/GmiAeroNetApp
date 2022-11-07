@@ -1,3 +1,6 @@
+import os
+import json
+
 from header_file import *
 from auth import ask_access_token
 from sdk_location_tools import *
@@ -7,8 +10,6 @@ from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 
-import json
-
 class Document(BaseModel):
     words: str
 
@@ -17,8 +18,22 @@ app = FastAPI()
 objLoc = location_sub()
 objQos = qos_sub()
 
+# Call me only when working locally for dev/debug
+def add_local_env_var():
+    print("local vars")
+    os.environ['NETAPP_NAME'] = "GMI_Netapp"
+    os.environ['NETAPP_ID'] = "gmi_netapp"
+    os.environ['NETAPP_IP'] = "http://127.0.0.1:"
+    os.environ['NETAPP_SERVER_VAPP'] = "127.0.0.1"
+    os.environ['NETAPP_PORT_5G'] = ""
+    os.environ['NETAPP_PORT_WEB'] = ""
+    os.environ['NETAPP_PORT_VAPP'] = "8000"
+    os.environ['NEF_HOST'] = "http://localhost:8888"
+    os.environ['NEF_CALLBACK_URL'] = "http://host.docker.internal:"
+
 @app.on_event("startup")
 async def startup_event():
+    add_local_env_var()
     print_initmess()
 
 @app.get('/', response_class=HTMLResponse)
