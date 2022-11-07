@@ -1,4 +1,4 @@
-from network.msg.MsgUtils import AnswerForVApp
+#from network.msg.MsgUtils import AnswerForVApp
 
 
 # Classes to be translated into Json messages about monitoring
@@ -16,9 +16,9 @@ class MonitoringParams(object):
         self.frequency = frequency
 
 
-class MonitoringTriggerAnswer(AnswerForVApp):
+# class MonitoringTriggerAnswer(AnswerForVApp):
 
-    def __init__(self, type_msg, num, status):
-        super().__init__(type_msg, num, status)
+#     def __init__(self, type_msg, num, status):
+#         super().__init__(type_msg, num, status)
 
 

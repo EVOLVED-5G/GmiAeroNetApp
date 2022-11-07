@@ -7,11 +7,11 @@ from sdk_location_tools import *
 from sdk_QoS_tools import *
 
 from fastapi import FastAPI, Request
-from pydantic import BaseModel
+#from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 
-class Document(BaseModel):
-    words: str
+#class Document(BaseModel):
+ #   words: str
 
 app = FastAPI()
 
