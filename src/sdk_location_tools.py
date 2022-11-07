@@ -1,7 +1,9 @@
+import datetime
+import os
+
 from evolved5g.swagger_client.rest import ApiException
 from evolved5g.sdk import LocationSubscriber
 from emulator import Emulator_Utils
-import datetime
 
 class location_sub:
     subName = ""
@@ -12,8 +14,8 @@ def create_single_request_for_location_info(external_id :str):
     """
     This function request the device location via the 5G-API
     """
-    netapp_id = "GMI-AERO_Netapp"
-    host = Emulator_Utils.get_host_of_the_nef_emulator()
+    netapp_id = str(os.getenv('NETAPP_ID'))
+    host = str(os.getenv('NEF_HOST'))    #Emulator_Utils.get_host_of_the_nef_emulator()
     token = Emulator_Utils.get_token()
     location_subscriber = LocationSubscriber(host, token.access_token)
 
@@ -26,8 +28,8 @@ def create_single_request_for_location_info(external_id :str):
 
 def read_and_delete_all_existing_loc_subscriptions():
     # How to get all subscriptions
-    netapp_id = "GMI-AERO_Netapp"
-    host = Emulator_Utils.get_host_of_the_nef_emulator()
+    netapp_id = str(os.getenv('NETAPP_ID'))
+    host = str(os.getenv('NEF_HOST'))    #Emulator_Utils.get_host_of_the_nef_emulator()
     token = Emulator_Utils.get_token()
     location_subscriber = LocationSubscriber(host, token.access_token)
 
@@ -51,7 +53,7 @@ def read_and_delete_all_existing_loc_subscriptions():
 def create_subscription_and_retrieve_call_backs(external_id :str):
     # Create a subscription, that will notify us 1000 times, for the next 1 day starting from now
     expire_time = (datetime.datetime.utcnow() + datetime.timedelta(days=1)).isoformat() + "Z"
-    netapp_id = "GMI-AERO_Netapp"
+    netapp_id = str(os.getenv('NETAPP_ID'))
     host = Emulator_Utils.get_host_of_the_nef_emulator()
     token = Emulator_Utils.get_token()
     location_subscriber = LocationSubscriber(host, token.access_token)
@@ -59,10 +61,11 @@ def create_subscription_and_retrieve_call_backs(external_id :str):
     subscription = location_subscriber.create_subscription(
         netapp_id=netapp_id,
         external_id=external_id,
-        notification_destination="http://host.docker.internal:8000/monitoring/callback",
+        notification_destination = str(os.getenv('NEF_CALLBACK_URL')) + str(os.getenv('NETAPP_PORT_VAPP')) + "/monitoring/callback", 
         maximum_number_of_reports=1000,
         monitor_expire_time=expire_time
     )
+    #notification_destination = "http://host.docker.internal:8000/monitoring/callback",
 
     # From now on we should retrieve POST notifications to http://host.docker.internal:5000/monitoring/loc_callback
 

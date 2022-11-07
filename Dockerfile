@@ -18,5 +18,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 RUN pip install evolved5g
 RUN pip install requests
 
+#
+EXPOSE 8000
+
 # 
-CMD ["uvicorn", "src.main:app", "--port", "8000"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
