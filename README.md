@@ -1,3 +1,7 @@
+V2.0
+----
+Include .env file and docker file
+
 V1.4 03 mar 2022
 ----------------
 Version 2.0 of the NetApp with the use of the Evolved5G SDK : LocationSubscriber and QosAwareness
