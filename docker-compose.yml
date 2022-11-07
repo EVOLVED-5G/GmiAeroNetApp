@@ -28,5 +28,5 @@ services:
 # network bridge with nef_emulator_default to be able to reach the NEF emulator 
 networks:
   default:
-    name: nef_emulator_services_default
-    external: true
+    #name: nef_emulator_default
+    #external: true
