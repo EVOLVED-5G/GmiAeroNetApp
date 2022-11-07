@@ -1,7 +1,6 @@
 import os
 import requests
 from header_file import *
-from requests.adapters import HTTPAdapter
 
 nef_host = str(os.getenv('NEF_HOST'))
 token_URL = nef_host + "/api/v1/login/access-token"

@@ -4,9 +4,6 @@
 version = "2.0"
 
 #run main app with 'uvicorn main:app --port 8000 --reload'
-
-from fastapi import FastAPI
-
 #emulatorIP= "http://localhost:8888"        => now in .env
 
 class bcolors:
