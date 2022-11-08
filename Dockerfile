@@ -17,6 +17,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 RUN pip install evolved5g
 RUN pip install requests
+RUN pip install pydantic
+RUN pip install uvicorn
 
 #
 EXPOSE 8000
