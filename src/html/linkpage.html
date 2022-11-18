@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin">
+        <style>
+        body {
+          align-items: center;
+          vertical-align: "center";
+          text-align: center;
+          background: linear-gradient(#98c2e7, #c4ffff);
+        }
+
+        #Ev5G_logo{
+            position: fixed;
+            vertical-align: left;
+            left: 10px;
+            top: 10px;
+            width: 250px;
+        }
+        #Gmi_logo{
+            position: fixed;
+            vertical-align: left;
+            left: 35px;
+            top: 150px;
+            width: 170px;
+            border-color: #ffffff;
+            border-style:double;
+            border-width: 15px;
+            border-radius: 7px;
+            background-color: #ffffff;
+        }
+
+        #txt_button {
+            font-family: "Cabin", sans-serif;
+            color: rgb(46, 32, 32);
+            font-size: 26px;
+            position: fixed;
+            top: 36;
+            left: 50%;
+            margin-left: -230px;
+        }
+        </style>
+
+        <title>GMI AERO - Link page</title>
+    </head>
+
+    <body>
+        <!--<div style="margin-top: 5px;"><img src="logo_comp.png" alt="Logo GMI AERO"></div> -->
+
+        <img src="img\evolved-logo.png" id="Ev5G_logo">
+        <img src="img\gmi-logo.png" id="Gmi_logo">
+
+        <img src="img\img_tree_comp.png" usemap="#image-map">
+
+        <div id="txt_button">Default call</div>
+        <div id="txt_button" style="margin-top: 77";>Get cell ID for UE '10001@domain.com'</div>
+        <div id="txt_button" style="margin-top: 154";>Get coordonates for UE '10001@domain.com'</div>
+        <div id="txt_button" style="margin-top: 231";>Connection : Create subscription</div>
+        <div id="txt_button" style="margin-top: 308";>Connection : Delete subscription</div>
+        <div id="txt_button" style="margin-top: 382";>QoS : Create quaranted subscription</div>
+        <div id="txt_button" style="margin-top: 458";>QoS : Create Non quaranted subscription</div>
+        <div id="txt_button" style="margin-top: 534";>QoS : Delete subscription</div>
+
+        <map name="image-map">
+            <area target="display-frame" alt="" title="" href="http://localhost:8000" coords="705,76,23,20" shape="rect">
+			
+            <area target="display-frame" alt="" title="" href="http://localhost:8000/location_getCellID/10001@domain.com" coords="30,96,703,154" shape="rect">
+			
+            <area target="display-frame" alt="" title="" href="http://localhost:8000/location_getLatAndLong/10001@domain.com" coords="28,172,692,229" shape="rect">
+			
+            <area target="display-frame" alt="" title="" href="http://localhost:8000/connection_createSub/" coords="30,244,689,304" shape="rect">
+
+            <area target="display-frame" alt="" title="" href="http://localhost:8000/connection_deleteSub" coords="31,321,696,377" shape="rect">
+
+            <area target="display-frame" alt="" title="" href="http://localhost:8000/qos_createQuarantedSubscription" coords="34,403,696,451" shape="rect">
+
+            <area target="display-frame" alt="" title="" href="http://localhost:8000/qos_createNoQuarantedSubscription" coords="36,479,690,530" shape="rect">
+
+            <area target="display-frame" alt="" title="" href="http://localhost:8000/qos_deleteSub" coords="32,553,695,603" shape="rect">
+        </map>
+		
+		<div>
+			<iframe name="display-frame" style="width:800px;height:200px;border:1px solid #2E8B57;"></iframe>
+		</div>
+
+    </body>
+</html>
+

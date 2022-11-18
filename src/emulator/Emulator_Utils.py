@@ -1,23 +1,17 @@
 from evolved5g import swagger_client
-from evolved5g.swagger_client import LoginApi
+from evolved5g.swagger_client import LoginApi, User
 from evolved5g.swagger_client.models import Token
 
 
-class EmulatorAccessToken:
+def get_token_for_nef_emulator() -> Token:
 
-    def __init__(self, token_str, token_type):
-        self.str = token_str
-        self.token_type = token_type
-
-
-def get_token() -> Token:
-    # User name and pass matches are set in the .env of the docker of NEF_EMULATOR. See
-    # https://github.com/EVOLVED-5G/NEF_emulator
     username = "admin@my-email.com"
     password = "pass"
+    # User name and pass matches are set in the .env of the docker of NEF_EMULATOR. See
+    # https://github.com/EVOLVED-5G/NEF_emulator
     configuration = swagger_client.Configuration()
     # The host of the 5G API (emulator)
-    configuration.host = get_host_of_the_nef_emulator()
+    configuration.host = get_url_of_the_nef_emulator()
     api_client = swagger_client.ApiClient(configuration=configuration)
     api_client.select_header_content_type(["application/x-www-form-urlencoded"])
     api = LoginApi(api_client)
@@ -27,12 +21,34 @@ def get_token() -> Token:
 
 def get_api_client(token) -> swagger_client.ApiClient:
     configuration = swagger_client.Configuration()
-    configuration.host = get_host_of_the_nef_emulator()
+    configuration.host = get_url_of_the_nef_emulator()
     configuration.access_token = token.access_token
     api_client = swagger_client.ApiClient(configuration=configuration)
     return api_client
 
 
-def get_host_of_the_nef_emulator() -> str:
+def get_url_of_the_nef_emulator() -> str:
     return "http://localhost:8888"
 
+def get_folder_path_for_certificated_and_capif_api_key()->str:
+    """
+    This is the folder that was provided when you registered the NetApp to CAPIF.
+    It contains the certificates and the api.key needed to communicate with the CAPIF server
+    :return:
+    """
+    return "D:\Datas\Projets\Evolved 5G\GMI NetApp\config_files\certificates"
+
+def get_capif_host()->str:
+    """
+    When running CAPIF via docker (by running ./run.sh) you should have at your /etc/hosts the following record
+    127.0.0.1       capifcore
+    :return:
+    """
+    return "capifcore"
+
+def get_capif_https_port()->int:
+    """
+    This is the default https port when running CAPIF via docker
+    :return:
+    """
+    return 443

@@ -1,106 +1,107 @@
 import os
-import json
 
+from fastapi import FastAPI, Body, Request
+from fastapi.responses import FileResponse, HTMLResponse
+
+from formatTools.str_tools import *
 from header_file import *
-from auth import ask_access_token
-from sdk_location_tools import *
-from sdk_QoS_tools import *
-
-from fastapi import FastAPI, Request
-#from pydantic import BaseModel
-from fastapi.responses import HTMLResponse
-
-#class Document(BaseModel):
- #   words: str
+from sdkTools.connectionMonitor_tools import *
+from sdkTools.location_tools import *
+from sdkTools.QoS_tools import *
+from qos_info import *
 
 app = FastAPI()
 
-objLoc = location_sub()
-objQos = qos_sub()
+qoss = QOSINFO()
 
 # Call me only when working locally for dev/debug
 def add_local_env_var():
-    print("local vars")
+    print("Set local vars : ...OK")
     os.environ['NETAPP_NAME'] = "GMI_Netapp"
     os.environ['NETAPP_ID'] = "gmi_netapp"
-    os.environ['NETAPP_IP'] = "http://127.0.0.1:"
-    os.environ['NETAPP_SERVER_VAPP'] = "127.0.0.1"
-    os.environ['NETAPP_PORT_5G'] = ""
-    os.environ['NETAPP_PORT_WEB'] = ""
     os.environ['NETAPP_PORT_VAPP'] = "8000"
+    os.environ['NETAPP_CALLBACK_URL'] = "http://host.docker.internal:8000/monitoring/callback"     #"http://127.0.0.1:5656/monitoring/callback"
     os.environ['NEF_HOST'] = "http://localhost:8888"
     os.environ['NEF_CALLBACK_URL'] = "http://host.docker.internal:"
-
+    os.environ['REQUESTED_UE_IP'] = "10.0.0.1"
+    os.environ['REQUESTED_UE_EXTID'] = "10001@domain.com"
+ 
 @app.on_event("startup")
 async def startup_event():
     add_local_env_var()
     print_initmess()
+    #print(qoss._getStatus())
 
+""" DEFAULT RESPONSE """
 @app.get('/', response_class=HTMLResponse)
 async def root():
-   return return_defaultMess()
+    return FileResponse('.\html\default.html')
 
-@app.get('/sdk_location/{externalId}')
-async def root(externalId: str):
-   external_id = externalId #"10002@domain.com"
-   response = create_single_request_for_location_info(external_id)
-   return response
+""" RETURN CELL ID AFTER SENDING AN UE ID """
+@app.get('/location_getCellID/{externalId}')
+async def root(externalId: str): 
+   response = location_getCellId(externalId)
+   returnStr = extractCellId(str(response))
+   print("Cell ID for UE" , '\033[1m'  + externalId + '\033[0m',"requested : " + returnStr)
+   return returnStr
 
-@app.get('/sdk_location_delete_sub')
+""" RETURN CELL COORDONATES AFTER SENDING A UE ID """
+@app.get('/location_getLatAndLong/{externalId}')
+async def root(externalId: str): 
+   response = location_getCellId(externalId)
+   cellId = extractCellId(str(response))
+   latAndLong = location_getLatAndLon(cellId)
+   #print(str(latAndLong))
+   returnStr = extractLatAndLong(str(latAndLong))
+   print("Coordonates for UE ", '\033[1m'  + externalId + '\033[0m'," requested : " + returnStr)
+   return returnStr 
+
+""" CREATE BOTH CONNECTION SUBSCRIPTIONS """
+@app.get('/connection_createSub', response_class=HTMLResponse)
 async def root():
-   response = read_and_delete_all_existing_loc_subscriptions()
-   print(response)
-   return response
+    response = connection_createSubscription()
+    return response
 
-@app.get('/sdk_location_create_sub/{externalId}')
-async def root(externalId: str):
-   external_id = externalId #"10002@domain.com"
-   response = create_subscription_and_retrieve_call_backs(external_id)
-   print(response)
-   return response
-
-@app.post("/monitoring/callback")   #location callback
-async def create_item(req: Request):
-    document_json = await req.json()
-    objLoc.subName = document_json['subscription']
-    objLoc.extID = document_json['externalId']
-    objLoc.cellID = document_json['locationInfo']['cellId']
-    jsonStr = json.dumps(objLoc.__dict__)
-    print(jsonStr)
-    print(document_json)
-    return document_json
-
-@app.get('/get_last_locInfo')
+""" DELETE ALL CONNECTION SUBSCRIPTIONS """
+@app.get('/connection_deleteSub', response_class=HTMLResponse)
 async def root():
-    jsonStr = json.dumps(objLoc.__dict__)
-    #print(jsonStr)
-    return jsonStr
+    response = connection_deleteSubscription()
+    return response
 
-@app.get('/sdk_qos_delete_sub')
+""" CREATE QOS QUARANTED SUBSCRIPTIONS """
+@app.get('/qos_createQuarantedSubscription')
 async def root():
-   response = read_and_delete_all_existing_qos_subscriptions()
-   print(response)
-   return response
+    response = qos_createQuarantedSubscription()
+    return response
 
-@app.get('/sdk_qos_create_sub')
+""" CREATE QOS NON QUARANTED SUBSCRIPTIONS """
+@app.get('/qos_createNoQuarantedSubscription')
 async def root():
-   response = create_non_quaranteed_bit_rate_subscription_for_live_streaming()
-   print(response)
-   return response
+    response = qos_createNoQuarantedSubscription()
+    return response
 
-@app.post("/monitoring/qos_callback")   #location callback
-async def create_item(req: Request):
-    document_json = await req.json()
-    objQos.transaction = document_json['transaction']
-    objQos.ipv4addr = document_json['ipv4Addr']
-    objQos.event = document_json['eventReports'][0]['event']
-    jsonStr = json.dumps(objLoc.__dict__)
-    print(jsonStr)
-    print(document_json)
-    return document_json
-
-@app.get('/get_last_qosInfo')
+""" DELETE ALL QOS SUBSCRIPTIONS """
+@app.get('/qos_deleteSub', response_class=HTMLResponse)
 async def root():
-    jsonStr = json.dumps(objQos.__dict__)
-    #print(jsonStr)
-    return jsonStr
+    response = qos_deleteSubscription()
+    return response
+
+""" CALLBACK  """
+@app.post('/monitoring/callback')
+async def update_item(
+                payload: dict = Body(...)
+            ):
+        callbackType = determinCallbacktype(str(payload))
+        print("New notification retrieved : " + callbackType)
+        #print(payload)
+        if(callbackType == "callbacktype = qos"):
+            qoss._setStatus(extractQosEvent(str(payload)))
+            print(qoss._getStatus())
+        else:
+            print("Unknown callback type")
+
+
+""" RETURN QOS STATUS """
+@app.get('/qos_getStatus')
+async def root():
+    return (qoss._getStatus())
