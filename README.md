@@ -1,3 +1,8 @@
+V3.0
+----
+Include Capif integration, compatibility with last version of SDK and Nef Emulator
+Adaptation to changes on vApp side
+
 V2.0
 ----
 Include .env file and docker file

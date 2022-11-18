@@ -6,15 +6,13 @@ services:
     container_name: gmi_netapp_container
     # List of environment variables
     environment:
-      NETAPP_ID: "${netapp_id}"
       NETAPP_NAME: "${netapp_name}"
-      NETAPP_IP: "${netapp_ip}"
-      NETAPP_SERVER_VAPP: "${netapp_server_vapp}"
-      NETAPP_PORT_5G: "${netapp_port_5g}"
-      NETAPP_PORT_WEB: "${netapp_port_web}"
+      NETAPP_ID: "${netapp_id}"
       NETAPP_PORT_VAPP: "${netapp_port_vapp}"
-      NEF_CALLBACK_URL: "${nef_callback_url}"
+      NETAPP_CALLBACK_URL: "${netapp_callback_url}"
       NEF_HOST: "${nef_host}"
+      NEF_CALLBACK_URL: "${nef_callback_url}"
+      NETAPP_PORT_5G: "${netapp_port_5g}"
 
     build:
     # Path to the src code

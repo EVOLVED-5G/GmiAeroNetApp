@@ -1,10 +1,11 @@
 import os
+import sys
 
-from fastapi import FastAPI, Body, Request
+from fastapi import FastAPI, Body
 from fastapi.responses import FileResponse, HTMLResponse
 
-from formatTools.str_tools import *
 from header_file import *
+from formatTools.str_tools import *
 from sdkTools.connectionMonitor_tools import *
 from sdkTools.location_tools import *
 from sdkTools.QoS_tools import *
@@ -28,10 +29,11 @@ def add_local_env_var():
  
 @app.on_event("startup")
 async def startup_event():
-    add_local_env_var()
+    #print("Argument List:", str(sys.argv))
+    if(str(sys.argv).rfind("workers") > -1):  #if argument "workers" is passed, thuis is a local run, so call add_local_env_var()
+        add_local_env_var()
     print_initmess()
-    #print(qoss._getStatus())
-
+    
 """ DEFAULT RESPONSE """
 @app.get('/', response_class=HTMLResponse)
 async def root():
