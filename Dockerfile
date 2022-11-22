@@ -16,9 +16,9 @@ COPY ./requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 RUN pip install evolved5g
-RUN pip install requests
 RUN pip install uvicorn
 RUN pip install pydantic
+RUN pip install aiofiles
 
 #
 EXPOSE 8000
