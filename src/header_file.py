@@ -4,7 +4,7 @@
 #V3.0   Onboard capif, for vApp to retrieve localization, QoS and connection status
 version = "3.1" 
 
-#run main app with 'uvicorn main:app --port 8000 --reload'
+#run main app with ' uvicorn main:app --host 192.168.0.103 --port 8383 --workers 1' add --workers 1 to load local vars
 
 class bcolors:
     HEADER = '\033[95m'
@@ -20,11 +20,11 @@ class bcolors:
 #https://patorjk.com/software/taag/
 
 def print_initmess():
-    mess =  "  _______  ___  ___   __       __   __   _______  ___________     ___       ______    ______   " + '\n'
-    mess += " /  _____||   \/   | |  |     |  \ |  | |   ____||           |   /   \     |   _  \  |   _  \  " + '\n'
-    mess += "|  |  __  |  \  /  | |  |     |   \|  | |  |__   `---|  |----`  /  ^  \    |  |_)  | |  |_)  | " + '\n'
-    mess += "|  | |_ | |  |\/|  | |  |     |  . `  | |   __|      |  |      /  /_\  \   |   ___/  |   ___/  " + '\n'
-    mess += "|  |__| | |  |  |  | |  |     |  |\   | |  |____     |  |     /  _____  \  |  |      |  |      " + '\n'
-    mess += " \______| |__|  |__| |__|     |__| \__| |_______|    |__|    /__/     \__\ | _|      | _|      " + '\n'
+    mess  = " ██████ ███    ███ ██    ███    ██ ███████ ███████ ██████ ██████ ██████  " + '\n'
+    mess += "██      ████  ████ ██    ████   ██ ██         ██   ██   ████   ████   ██ " + '\n'
+    mess += "██   █████ ████ ██ ██    ██ ██  ██ █████      ██   █████████████ ██████  " + '\n'
+    mess += "██    ████  ██  ██ ██    ██  ██ ██ ██         ██   ██   ████     ██      " + '\n'
+    mess += " ██████ ██      ██ ██    ██   ████ ███████    ██   ██   ████     ██      " + '\n'
     print(mess)
-    print(bcolors.BOLD + bcolors.OKBLUE + " => VERSION OF THE NETAPP : " + bcolors.OKGREEN + version)
+    print(bcolors.BOLD + bcolors.OKBLUE + " => VERSION OF THE NETAPP : " + bcolors.OKGREEN + version + bcolors.ENDC)
+    print()

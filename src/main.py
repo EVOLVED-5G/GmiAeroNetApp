@@ -1,5 +1,6 @@
 import os
 import sys
+#import pathlib
 
 from fastapi import FastAPI, Body
 from fastapi.responses import FileResponse, HTMLResponse
@@ -11,6 +12,8 @@ from sdkTools.location_tools import *
 from sdkTools.QoS_tools import *
 from qos_info import *
 
+from emulator import Emulator_Utils #a retirer
+
 app = FastAPI()
 
 qoss = QOSINFO()
@@ -18,10 +21,11 @@ qoss = QOSINFO()
 # Call me only when working locally for dev/debug
 def add_local_env_var():
     print("Set local vars : ...OK")
+    os.environ['NETAPP_PATH'] = ""
     os.environ['NETAPP_NAME'] = "GMI_Netapp"
     os.environ['NETAPP_ID'] = "gmi_netapp"
-    os.environ['NETAPP_PORT_VAPP'] = "8000"
-    os.environ['NETAPP_CALLBACK_URL'] = "http://host.docker.internal:8000/monitoring/callback"     #"http://127.0.0.1:5656/monitoring/callback"
+    os.environ['NETAPP_PORT_VAPP'] = "8383"
+    os.environ['NETAPP_CALLBACK_URL'] = "http://192.168.0.103:8383/monitoring/callback"     #"http://127.0.0.1:5656/monitoring/callback"         host.docker.internal
     os.environ['NEF_HOST'] = "http://localhost:8888"
     os.environ['NEF_CALLBACK_URL'] = "http://host.docker.internal:"
     os.environ['REQUESTED_UE_IP'] = "10.0.0.1"
@@ -30,14 +34,17 @@ def add_local_env_var():
 @app.on_event("startup")
 async def startup_event():
     #print("Argument List:", str(sys.argv))
+    print_initmess()
     if(str(sys.argv).rfind("workers") > -1):  #if argument "workers" is passed, thuis is a local run, so call add_local_env_var()
         add_local_env_var()
-    print_initmess()
+    print("NETAPP_PATH : " + os.environ['NETAPP_PATH'])
+    
     
 """ DEFAULT RESPONSE """
 @app.get('/', response_class=HTMLResponse)
 async def root():
-    return FileResponse('.\html\default.html')
+    #print(pathlib.Path().resolve())
+    return FileResponse("." + os.environ['NETAPP_PATH'] + "/html/default.html")
 
 """ RETURN CELL ID AFTER SENDING AN UE ID """
 @app.get('/location_getCellID/{externalId}')

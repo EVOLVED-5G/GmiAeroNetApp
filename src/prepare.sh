@@ -1,0 +1,1 @@
+edvolved5g register-and-onboard-to-capif --config_file_full_path="/src/capif_NetApp_registration.json"
