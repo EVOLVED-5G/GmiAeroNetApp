@@ -20,10 +20,8 @@ RUN pip install uvicorn
 RUN pip install pydantic
 RUN pip install aiofiles
 
-CMD ["sh", "prepeare.sh"]
-
-#
 EXPOSE 8383
 
-# 
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8383"]
+CMD ["sh", "/code/src/prepare.sh"]
+
+

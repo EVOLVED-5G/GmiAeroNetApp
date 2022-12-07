@@ -25,7 +25,8 @@ services:
       # Be careful: if no mapping is specified, Docker will use a random available port on container side!
       - "8383:8383"
 
-
+    extra_hosts:
+      - "capifcore:10.161.1.117"
 # network bridge with nef_emulator_default to be able to reach the NEF emulator 
 #networks:
   #default:
