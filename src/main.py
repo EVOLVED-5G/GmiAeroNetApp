@@ -12,8 +12,6 @@ from sdkTools.location_tools import *
 from sdkTools.QoS_tools import *
 from qos_info import *
 
-from emulator import Emulator_Utils #a retirer
-
 app = FastAPI()
 
 qoss = QOSINFO()
@@ -21,16 +19,15 @@ qoss = QOSINFO()
 # Call me only when working locally for dev/debug
 def add_local_env_var():
     print("Set local vars : ...OK")
-    os.environ['NETAPP_PATH'] = ""
     os.environ['NETAPP_NAME'] = "GMI_Netapp"
     os.environ['NETAPP_ID'] = "gmi_netapp"
-    os.environ['NETAPP_PORT_VAPP'] = "8383"
-    os.environ['NETAPP_CALLBACK_URL'] = "http://192.168.0.103:8383/monitoring/callback"     #"http://127.0.0.1:5656/monitoring/callback"         host.docker.internal
+    os.environ['NETAPP_PORT_VAPP'] = "8383" 
+    os.environ['NETAPP_PATH'] = ""
     os.environ['NEF_HOST'] = "http://localhost:8888"
-    os.environ['NEF_CALLBACK_URL'] = "http://host.docker.internal:"
+    os.environ['NEF_CALLBACK_URL'] = "http://192.168.0.103:8383/monitoring/callback"
+    os.environ['CAPIF_KEY_PATH'] = "..\..\config_files\certificates"
     os.environ['REQUESTED_UE_IP'] = "10.0.0.1"
-    os.environ['REQUESTED_UE_EXTID'] = "10001@domain.com"
- 
+
 @app.on_event("startup")
 async def startup_event():
     #print("Argument List:", str(sys.argv))

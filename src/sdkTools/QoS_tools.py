@@ -11,7 +11,7 @@ def qos_createQuarantedSubscription():
                                  folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                  capif_host=Emulator_Utils.get_capif_host(),
                                  capif_https_port=Emulator_Utils.get_capif_https_port())
-    equipment_network_identifier = os.environ['REQUESTED_UE_IP']
+    equipment_network_identifier = os.getenv('REQUESTED_UE_IP')
     network_identifier = QosAwareness.NetworkIdentifier.IP_V4_ADDRESS
     conversational_voice = QosAwareness.GBRQosReference.CONVERSATIONAL_VOICE
     # In this scenario we monitor UPLINK
@@ -25,7 +25,8 @@ def qos_createQuarantedSubscription():
                                      downlink_volume=5 * gigabyte,  # 5 Gigabytes for downlink
                                      uplink_volume=5 * gigabyte  # 5 Gigabytes for uplink
                                      )
-    notification_destination = os.environ['NETAPP_CALLBACK_URL'] 
+
+    notification_destination = os.environ['NEF_CALLBACK_URL'] 
 
     subscription = qos_awereness.create_guaranteed_bit_rate_subscription(
         netapp_id=netapp_id,
@@ -54,7 +55,7 @@ def qos_createNoQuarantedSubscription():
                                  folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                  capif_host=Emulator_Utils.get_capif_host(),
                                  capif_https_port=Emulator_Utils.get_capif_https_port())
-    equipment_network_identifier = os.environ['REQUESTED_UE_IP']
+    equipment_network_identifier = os.getenv('REQUESTED_UE_IP')
     network_identifier = QosAwareness.NetworkIdentifier.IP_V4_ADDRESS
     qos_reference = QosAwareness.NonGBRQosReference.LIVE_STREAMING
     gigabyte = 1024 * 1024 * 1024
@@ -64,7 +65,7 @@ def qos_createNoQuarantedSubscription():
                                      downlink_volume=5 * gigabyte,  # 5 Gigabytes for downlink
                                      uplink_volume=5 * gigabyte  # 5 Gigabytes for uplink
                                      )
-    notification_destination = os.environ['NETAPP_CALLBACK_URL']
+    notification_destination = os.environ['NEF_CALLBACK_URL']
     subscription = qos_awereness.create_non_guaranteed_bit_rate_subscription(
         netapp_id=netapp_id,
         equipment_network_identifier=equipment_network_identifier,

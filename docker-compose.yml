@@ -8,14 +8,13 @@ services:
     environment:
       NETAPP_NAME: "${netapp_name}"
       NETAPP_ID: "${netapp_id}"
-      NETAPP_PORT_VAPP: "${netapp_port_vapp}"
+      NETAPP_PORT_VAPP: "${netapp_port_vapp}" 
+      NETAPP_PATH: "${netapp_path}"
       NEF_HOST: "${nef_host}"
       NEF_CALLBACK_URL: "${nef_callback_url}"
-      NETAPP_PORT_5G: "${netapp_port_5g}"
-      NETAPP_CALLBACK_URL: "${netapp_callback_url}"
-      NETAPP_PATH: "${netapp_path}" 
+      CAPIF_KEY_PATH: "${capif_key_path}"
+      UE_REQUESTED_IP: "${ue_requested_ip}"
       
-
     build:
     # Path to the src code
       context: ./
@@ -25,7 +24,8 @@ services:
       # Be careful: if no mapping is specified, Docker will use a random available port on container side!
       - "8383:8383"
 
-
+    extra_hosts:
+      - "capifcore:10.161.1.117"
 # network bridge with nef_emulator_default to be able to reach the NEF emulator 
 #networks:
   #default:
