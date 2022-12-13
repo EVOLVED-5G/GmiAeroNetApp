@@ -1,3 +1,8 @@
+jq -r .capif_host=\"$CAPIF_HOST\" capif_NetApp_registration.json >> tmp.json && mv tmp.json capif_NetApp_registration.json
+jq -r .capif_http_port=\"$CAPIF_HTTP_PORT\" capif_NetApp_registration.json >> tmp.json && mv tmp.json capif_NetApp_registration.json
+jq -r .capif_https_port=\"$CAPIF_HTTPS_PORT\" capif_NetApp_registration.json >> tmp.json && mv tmp.json capif_NetApp_registration.json
+jq -r .capif_callback_url=\"http://$CAPIF_CALLBACK_URL\" capif_NetApp_registration.json >> tmp.json && mv tmp.json capif_NetApp_registration.json
+
 evolved5g register-and-onboard-to-capif --config_file_full_path="/code/src/capif_NetApp_registration.json"
 
 uvicorn src.main:app --host 0.0.0.0 --port 8383

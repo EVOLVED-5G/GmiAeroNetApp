@@ -27,4 +27,3 @@ RUN pip install aiofiles
 EXPOSE 8383
 
 CMD ["sh", "/code/src/prepare.sh"]
-

@@ -39,7 +39,7 @@ def get_folder_path_for_certificated_and_capif_api_key()->str:
     :return:
     """
     #return "/code/src/capif_onboarding"        //Democritos
-    # return ".\certificates"                   //Local
+    # return "..\..\config_files\certificates"                   //Local
     return os.getenv('CAPIF_KEY_PATH')
 
 def get_capif_host()->str:

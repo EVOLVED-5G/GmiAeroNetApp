@@ -27,6 +27,10 @@ def add_local_env_var():
     os.environ['NEF_LOGIN'] = "admin@my-email.com"
     os.environ['NEF_PWD'] = "pass"    
     os.environ['NEF_CALLBACK_URL'] = "http://192.168.0.103:8383/monitoring/callback"
+    #NU os.environ['CAPIF_HOST'] = "capifcore"
+    #NU os.environ['CAPIF_HTTP_PORT'] = "8080"
+    #NU os.environ['CAPIF_HTTPS_PORT'] = "443"
+    #NU os.environ['CAPIF_CALLBACK_URL'] = "http://localhost:5000"
     os.environ['CAPIF_KEY_PATH'] = "..\..\config_files\certificates"
     os.environ['REQUESTED_UE_IP'] = "10.0.0.1"
 
@@ -34,10 +38,9 @@ def add_local_env_var():
 async def startup_event():
     #print("Argument List:", str(sys.argv))
     print_initmess()
-    if(str(sys.argv).rfind("workers") > -1):  #if argument "workers" is passed, thuis is a local run, so call add_local_env_var()
+    if(str(sys.argv).rfind("workers") > -1):  #if argument "workers" is passed, this is a local run, so call add_local_env_var()
         add_local_env_var()
     print("NETAPP_PATH : " + os.environ['NETAPP_PATH'])
-    
     
 """ DEFAULT RESPONSE """
 @app.get('/', response_class=HTMLResponse)
