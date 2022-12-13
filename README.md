@@ -1,3 +1,12 @@
+V3.2
+----
+Version including changes after validation in Demokritos plateform
+
+
+V3.1
+----
+Version after validation in Demokritos plateform
+
 V3.0
 ----
 Include Capif integration, compatibility with last version of SDK and Nef Emulator

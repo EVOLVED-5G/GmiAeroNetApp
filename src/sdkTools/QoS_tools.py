@@ -26,8 +26,8 @@ def qos_createQuarantedSubscription():
                                      downlink_volume=5 * gigabyte,  # 5 Gigabytes for downlink
                                      uplink_volume=5 * gigabyte  # 5 Gigabytes for uplink
                                      )
-    notification_destination = "http://10.161.1.114:8383/monitoring/callback" 
 
+    notification_destination = "http://10.161.1.114:8383/monitoring/callback" 
 
     subscription = qos_awereness.create_guaranteed_bit_rate_subscription(
         netapp_id=netapp_id,
@@ -58,7 +58,6 @@ def qos_createNoQuarantedSubscription():
                                  capif_https_port=Emulator_Utils.get_capif_https_port())
 
     equipment_network_identifier = "10.0.0.1"
-
     network_identifier = QosAwareness.NetworkIdentifier.IP_V4_ADDRESS
     qos_reference = QosAwareness.NonGBRQosReference.LIVE_STREAMING
     gigabyte = 1024 * 1024 * 1024
@@ -68,7 +67,6 @@ def qos_createNoQuarantedSubscription():
                                      downlink_volume=5 * gigabyte,  # 5 Gigabytes for downlink
                                      uplink_volume=5 * gigabyte  # 5 Gigabytes for uplink
                                      )
-
     notification_destination = "http://10.161.1.114:8383/monitoring/callback"
 
     subscription = qos_awereness.create_non_guaranteed_bit_rate_subscription(

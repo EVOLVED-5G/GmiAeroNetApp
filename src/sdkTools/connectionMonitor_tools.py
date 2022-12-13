@@ -14,12 +14,12 @@ def connection_createSubscription():
                                            capif_host=Emulator_Utils.get_capif_host(),
                                            capif_https_port=Emulator_Utils.get_capif_https_port()   )
     expire_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=10)).isoformat() + "Z"
-    external_id = os.getenv('REQUESTED_UE_EXTID')
+    external_id = "10001@domain.com"
     print("EXTID : " + external_id)
     subscription_when_not_connected = connection_monitor.create_subscription(
         netapp_id=_netapp_id,
         external_id=external_id,
-        notification_destination = os.environ['NETAPP_CALLBACK_URL'] ,
+        notification_destination = os.environ['NEF_CALLBACK_URL'] ,
         monitoring_type= ConnectionMonitor.MonitoringType.INFORM_WHEN_NOT_CONNECTED,
         wait_time_before_sending_notification_in_seconds=3,
         maximum_number_of_reports=50,
@@ -28,7 +28,7 @@ def connection_createSubscription():
     subscription_when_connected = connection_monitor.create_subscription(
         netapp_id=_netapp_id,
         external_id=external_id,
-        notification_destination = os.environ['NETAPP_CALLBACK_URL'] ,
+        notification_destination = os.environ['NEF_CALLBACK_URL'] ,
         monitoring_type= ConnectionMonitor.MonitoringType.INFORM_WHEN_CONNECTED,
         wait_time_before_sending_notification_in_seconds=3,
         maximum_number_of_reports=50,

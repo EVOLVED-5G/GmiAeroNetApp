@@ -8,14 +8,13 @@ services:
     environment:
       NETAPP_NAME: "${netapp_name}"
       NETAPP_ID: "${netapp_id}"
-      NETAPP_PORT_VAPP: "${netapp_port_vapp}"
+      NETAPP_PORT_VAPP: "${netapp_port_vapp}" 
+      NETAPP_PATH: "${netapp_path}"
       NEF_HOST: "${nef_host}"
       NEF_CALLBACK_URL: "${nef_callback_url}"
-      NETAPP_PORT_5G: "${netapp_port_5g}"
-      NETAPP_CALLBACK_URL: "${netapp_callback_url}"
-      NETAPP_PATH: "${netapp_path}" 
+      CAPIF_KEY_PATH: "${capif_key_path}"
+      UE_REQUESTED_IP: "${ue_requested_ip}"
       
-
     build:
     # Path to the src code
       context: ./

@@ -64,7 +64,7 @@ def location_create_sub(external_id :str):
     subscription = location_subscriber.create_subscription(
         netapp_id=netapp_id,
         external_id=external_id,
-        notification_destination = os.environ['NETAPP_CALLBACK_URL'] ,
+        notification_destination = os.environ['NEF_CALLBACK_URL'] ,
         maximum_number_of_reports=1,
         monitor_expire_time=expire_time 
     )

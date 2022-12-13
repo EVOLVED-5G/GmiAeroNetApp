@@ -1,7 +1,8 @@
+import os
+
 from evolved5g import swagger_client
 from evolved5g.swagger_client import LoginApi, User
 from evolved5g.swagger_client.models import Token
-
 
 def get_token_for_nef_emulator() -> Token:
 
@@ -28,7 +29,8 @@ def get_api_client(token) -> swagger_client.ApiClient:
 
 def get_url_of_the_nef_emulator() -> str:
     return "http://10.161.1.126:8888"
-
+    #return "http://10.161.1.126:8888"              //Democritos
+    #return "http://localhost:8888"                //Local
 
 def get_folder_path_for_certificated_and_capif_api_key()->str:
     """
@@ -37,7 +39,6 @@ def get_folder_path_for_certificated_and_capif_api_key()->str:
     :return:
     """
     return "/code/src/capif_onboarding"
-
     # return ".\certificates"
 
 def get_capif_host()->str:
