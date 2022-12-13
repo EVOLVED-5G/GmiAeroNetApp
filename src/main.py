@@ -24,6 +24,8 @@ def add_local_env_var():
     os.environ['NETAPP_PORT_VAPP'] = "8383" 
     os.environ['NETAPP_PATH'] = ""
     os.environ['NEF_HOST'] = "http://localhost:8888"
+    os.environ['NEF_LOGIN'] = "admin@my-email.com"
+    os.environ['NEF_PWD'] = "pass"    
     os.environ['NEF_CALLBACK_URL'] = "http://192.168.0.103:8383/monitoring/callback"
     os.environ['CAPIF_KEY_PATH'] = "..\..\config_files\certificates"
     os.environ['REQUESTED_UE_IP'] = "10.0.0.1"

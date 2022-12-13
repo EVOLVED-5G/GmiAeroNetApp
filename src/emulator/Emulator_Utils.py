@@ -6,8 +6,8 @@ from evolved5g.swagger_client.models import Token
 
 def get_token_for_nef_emulator() -> Token:
 
-    username = "admin@my-email.com"
-    password = "pass"
+    username = os.getenv('NEF_HOST')    #"admin@my-email.com"
+    password = os.getenv('NEF_PWD')    #"pass"
     # User name and pass matches are set in the .env of the docker of NEF_EMULATOR. See
     # https://github.com/EVOLVED-5G/NEF_emulator
     configuration = swagger_client.Configuration()
@@ -28,9 +28,9 @@ def get_api_client(token) -> swagger_client.ApiClient:
 
 
 def get_url_of_the_nef_emulator() -> str:
-    return "http://10.161.1.126:8888"
     #return "http://10.161.1.126:8888"              //Democritos
     #return "http://localhost:8888"                //Local
+    return os.getenv('NEF_HOST')
 
 def get_folder_path_for_certificated_and_capif_api_key()->str:
     """
@@ -38,8 +38,9 @@ def get_folder_path_for_certificated_and_capif_api_key()->str:
     It contains the certificates and the api.key needed to communicate with the CAPIF server
     :return:
     """
-    return "/code/src/capif_onboarding"
-    # return ".\certificates"
+    #return "/code/src/capif_onboarding"        //Democritos
+    # return ".\certificates"                   //Local
+    return os.getenv('CAPIF_KEY_PATH')
 
 def get_capif_host()->str:
     """
