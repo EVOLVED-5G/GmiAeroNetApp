@@ -29,6 +29,7 @@ def get_api_client(token) -> swagger_client.ApiClient:
 def get_url_of_the_nef_emulator() -> str:
     return "http://10.161.1.126:8888"
 
+
 def get_folder_path_for_certificated_and_capif_api_key()->str:
     """
     This is the folder that was provided when you registered the NetApp to CAPIF.
@@ -36,6 +37,7 @@ def get_folder_path_for_certificated_and_capif_api_key()->str:
     :return:
     """
     return "/code/src/capif_onboarding"
+
     # return ".\certificates"
 
 def get_capif_host()->str:
