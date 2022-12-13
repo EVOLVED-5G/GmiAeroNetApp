@@ -11,6 +11,8 @@ services:
       NETAPP_PORT_VAPP: "${netapp_port_vapp}" 
       NETAPP_PATH: "${netapp_path}"
       NEF_HOST: "${nef_host}"
+      NEF_LOGIN: "${nef_login}"
+      NEF_PWD: "${nef_pwd}"
       NEF_CALLBACK_URL: "${nef_callback_url}"
       CAPIF_KEY_PATH: "${capif_key_path}"
       UE_REQUESTED_IP: "${ue_requested_ip}"
