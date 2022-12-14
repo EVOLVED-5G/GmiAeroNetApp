@@ -5,4 +5,4 @@ jq -r .capif_callback_url=\"http://$CAPIF_CALLBACK_URL\" /code/src/capif_NetApp_
 
 evolved5g register-and-onboard-to-capif --config_file_full_path="/code/src/capif_NetApp_registration.json"
 
-#uvicorn src.main:app --host 0.0.0.0 --port 8383
+uvicorn src.main:app --host 0.0.0.0 --port 8383
