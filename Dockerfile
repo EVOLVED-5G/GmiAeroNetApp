@@ -13,6 +13,9 @@ ENV PYTHONPATH "${PYTHONPATH}:/code/src"
 # 
 COPY ./requirements.txt /code/requirements.txt
 
+#install jq
+RUN apt-get update && apt-get install -y jq && apt-get clean
+
 #
 RUN mkdir -p /code/src/capif_onboarding
 
