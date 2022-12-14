@@ -31,7 +31,7 @@ services:
       - "8383:8383"
 
     extra_hosts:
-      - "capifcore:127.0.0.1"
+      - capifcore:host-gateway
 # network bridge with nef_emulator_default to be able to reach the NEF emulator 
 #networks:
   #default:
