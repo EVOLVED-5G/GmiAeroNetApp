@@ -2,7 +2,10 @@
 #V1.1   Request for localisation and QoS
 #V2.0   With SDK and .env file
 #V3.0   Onboard capif, for vApp to retrieve localization, QoS and connection status
-version = "3.1" 
+#V3.1   Version used for Demokritos validation
+#V3.2   Some changes to prepare deployement in Malaga
+#V3.3   Adaptation to prepare Feb23 deployement
+version = "3.3" 
 
 #run main app with ' uvicorn main:app --host 192.168.0.103 --port 8383 --workers 1' add --workers 1 to load local vars
 
