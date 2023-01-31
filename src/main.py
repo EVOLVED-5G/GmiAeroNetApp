@@ -1,39 +1,35 @@
 import os
 import sys
-#import pathlib
 
 from fastapi import FastAPI, Body
 from fastapi.responses import FileResponse, HTMLResponse
 
 from header_file import *
 from formatTools.str_tools import *
+from formatTools.qos_info import *
 from sdkTools.connectionMonitor_tools import *
 from sdkTools.location_tools import *
 from sdkTools.QoS_tools import *
-from qos_info import *
 
+#main declarations
 app = FastAPI()
-
 qoss = QOSINFO()
 
-# Call me only when working locally for dev/debug
+# This proc() is called only when working locally for dev/debug
 def add_local_env_var():
     print("Set local vars : ...OK")
     os.environ['NETAPP_NAME'] = "GMI_Netapp"
     os.environ['NETAPP_ID'] = "gmi_netapp"
     os.environ['NETAPP_PORT_VAPP'] = "8383" 
     os.environ['NETAPP_PATH'] = ""
-    os.environ['NEF_HOST'] = "http://localhost:8888"
-    os.environ['NEF_LOGIN'] = "admin@my-email.com"
-    os.environ['NEF_PWD'] = "pass"    
+    os.environ['NEF_USER'] = "admin@my-email.com"
+    os.environ['NEF_PASSWORD'] = "pass"    
+    os.environ['NEF_ADDRESS'] = "http://localhost:8888"
     os.environ['NEF_CALLBACK_URL'] = "http://192.168.0.103:8383/monitoring/callback"
-    #NU os.environ['CAPIF_HOST'] = "capifcore"
-    #NU os.environ['CAPIF_HTTP_PORT'] = "8080"
-    #NU os.environ['CAPIF_HTTPS_PORT'] = "443"
-    #NU os.environ['CAPIF_CALLBACK_URL'] = "http://localhost:5000"
-    os.environ['CAPIF_KEY_PATH'] = "..\..\config_files\certificates"
+    os.environ['PATH_TO_CERTS'] = "..\..\config_files\certificates"
     os.environ['REQUESTED_UE_IP'] = "10.0.0.1"
 
+# ALL RESPONSES CASES
 @app.on_event("startup")
 async def startup_event():
     #print("Argument List:", str(sys.argv))

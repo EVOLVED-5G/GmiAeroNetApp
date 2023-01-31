@@ -17,8 +17,6 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-#https://patorjk.com/software/taag/
-
 def print_initmess():
     mess  = " ██████ ███    ███ ██    ███    ██ ███████ ███████ ██████ ██████ ██████  " + '\n'
     mess += "██      ████  ████ ██    ████   ██ ██         ██   ██   ████   ████   ██ " + '\n'
