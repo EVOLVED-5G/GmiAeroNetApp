@@ -1,4 +1,3 @@
-jq -r .capif_host=\"$CAPIF_HOST\" /code/src/capif_NetApp_registration.json >> tmp.json && mv tmp.json /code/src/capif_NetApp_registration.json
 jq -r .capif_hostname=\"$CAPIF_HOSTNAME\" /code/src/capif_NetApp_registration.json >> tmp.json && mv tmp.json /code/src/capif_NetApp_registration.json
 jq -r .capif_http_port=\"$CAPIF_PORT_HTTP\" /code/src/capif_NetApp_registration.json >> tmp.json && mv tmp.json /code/src/capif_NetApp_registration.json
 jq -r .capif_https_port=\"$CAPIF_PORT_HTTPS\" /code/src/capif_NetApp_registration.json >> tmp.json && mv tmp.json /code/src/capif_NetApp_registration.json
