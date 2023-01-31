@@ -22,11 +22,7 @@ RUN mkdir -p /code/src/capif_onboarding
 # 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-RUN pip install evolved5g
-RUN pip install uvicorn
-RUN pip install pydantic
-RUN pip install aiofiles
-
 EXPOSE 8383
 
+#run prpeare.sh script to register Capif and start the NetApp
 CMD ["sh", "/code/src/prepare.sh"]
