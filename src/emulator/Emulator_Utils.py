@@ -48,7 +48,7 @@ def get_capif_host()->str:
     127.0.0.1       capifcore
     :return:
     """
-    return "capifcore"
+    return os.getenv('CAPIF_HOSTNAME')
 
 def get_capif_https_port()->int:
     """
