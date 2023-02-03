@@ -1,6 +1,6 @@
 {
   "folder_to_store_certificates": "/code/src/capif_onboarding",
-  "capif_hostname": "capifcore",
+  "capif_host": "capifcore",
   "capif_port_http": 8080,
   "capif_port_https": 443,
   "capif_netapp_username": "test_netapp_5",
