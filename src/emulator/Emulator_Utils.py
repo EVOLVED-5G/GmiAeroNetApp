@@ -13,23 +13,16 @@ def get_token_for_nef_emulator() -> Token:
     configuration = swagger_client.Configuration()
     # The host of the 5G API (emulator)
     configuration.host = get_url_of_the_nef_emulator()
+    configuration.verify_ssl = False
     api_client = swagger_client.ApiClient(configuration=configuration)
     api_client.select_header_content_type(["application/x-www-form-urlencoded"])
     api = LoginApi(api_client)
     token = api.login_access_token_api_v1_login_access_token_post("", username, password, "", "", "")
     return token
 
-def get_api_client(token) -> swagger_client.ApiClient:
-    configuration = swagger_client.Configuration()
-    configuration.host = get_url_of_the_nef_emulator()
-    configuration.access_token = token.access_token
-    api_client = swagger_client.ApiClient(configuration=configuration)
-    return api_client
-
-
 def get_url_of_the_nef_emulator() -> str:
     #return "http://10.161.1.126:8888"              //Democritos
-    #return "http://localhost:8888"                //Local
+    #return "http://localhost:8888"               # //Local
     return os.getenv('NEF_ADDRESS')
 
 def get_folder_path_for_certificated_and_capif_api_key()->str:
@@ -39,7 +32,7 @@ def get_folder_path_for_certificated_and_capif_api_key()->str:
     :return:
     """
     #return "/code/src/capif_onboarding"        //Democritos
-    # return "..\..\config_files\certificates"                   //Local
+    #return "..\..\config_files\certificates"                   //Local
     return os.getenv('PATH_TO_CERTS')
 
 def get_capif_host()->str:
