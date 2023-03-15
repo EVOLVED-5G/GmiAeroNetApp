@@ -1,3 +1,7 @@
+V4.0
+----
+Version using CAPIF v3.0 - NEF v2.0 - SDK v1.0.2 
+
 V3.2
 ----
 Version including changes after validation in Demokritos plateform
