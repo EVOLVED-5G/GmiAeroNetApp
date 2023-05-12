@@ -1,3 +1,7 @@
+V4.1
+----
+Version using CAPIF v3.1.1 - NEF v2.1.1 - SDK v1.0.4
+
 V4.0
 ----
 Version using CAPIF v3.0 - NEF v2.0 - SDK v1.0.2 
