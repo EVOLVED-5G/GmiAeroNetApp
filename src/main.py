@@ -34,8 +34,8 @@ def add_local_env_var():
 async def startup_event():
     #print("Argument List:", str(sys.argv))
     print_initmess()
-    if(str(sys.argv).rfind("workers") > -1):  #if argument "workers" is passed, this is a local run, so call add_local_env_var()
-        add_local_env_var()
+    #if(str(sys.argv).rfind("workers") > -1):  #if argument "workers" is passed, this is a local run, so call add_local_env_var()
+        #add_local_env_var()
     print("NETAPP_PATH : " + os.environ['NETAPP_PATH'])
     
 """ DEFAULT RESPONSE """
