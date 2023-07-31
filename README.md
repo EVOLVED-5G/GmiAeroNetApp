@@ -1,3 +1,11 @@
+V4.3
+----
+Version using CAPIF v3.1.2 - NEF v2.2.2 - SDK v1.0.7 and K8s manifest files
+
+V4.2
+----
+Version using CAPIF v3.1.2 - NEF v2.2.2 - SDK v1.0.7
+
 V4.1
 ----
 Version using CAPIF v3.1.1 - NEF v2.1.1 - SDK v1.0.4

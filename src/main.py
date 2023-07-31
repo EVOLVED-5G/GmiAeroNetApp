@@ -25,7 +25,7 @@ def add_local_env_var():
     os.environ['NEF_USER'] = "admin@my-email.com"
     os.environ['NEF_PASSWORD'] = "pass"    
     os.environ['NEF_ADDRESS'] = "http://localhost:8888"
-    os.environ['NEF_CALLBACK_URL'] = "http://192.168.0.103:8383/monitoring/callback"
+    os.environ['NEF_CALLBACK_URL'] = "http://localhost:8383/monitoring/callback"
     os.environ['PATH_TO_CERTS'] = "..\..\config_files\certificates"
     os.environ['REQUESTED_UE_IP'] = "10.0.0.1"
 
