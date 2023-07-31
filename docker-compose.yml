@@ -20,6 +20,7 @@ services:
       CAPIF_CALLBACK_URL: "${capif_callback_url}"  
       PATH_TO_CERTS: "${path_to_certs}"
       UE_REQUESTED_IP: "${ue_requested_ip}"
+      ENVIRONEMENT_MODE: "${environment_mode}"
       
     build:
     # Path to the src code
