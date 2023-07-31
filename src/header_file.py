@@ -5,7 +5,7 @@
 #V3.1   Version used for Demokritos validation
 #V3.2   Some changes to prepare deployement in Malaga
 #V3.3   Adaptation to prepare Feb23 deployement
-version = "3.3" 
+version = "4.2" 
 
 #run main app with ' uvicorn main:app --host 192.168.0.103 --port 8383 --workers 1' add --workers 1 to load local vars
 

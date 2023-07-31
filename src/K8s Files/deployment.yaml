@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gmiaeroapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gmiaeroapp
+  template:
+    metadata:
+      labels:
+        app: gmiaeroapp
+    spec:
+      containers:
+        - name: gmiaeroapp
+          image: mosgmi/gmiaeroapp_app
+          imagePullPolicy: Always 
+          env:
+            - name: NEF_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: NEF_ADDRESS
+            - name: NEF_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: NEF_USER
+            - name: NEF_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: NEF_PASSWORD
+            - name: PATH_TO_CERTS
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: PATH_TO_CERTS
+            - name: CAPIF_HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: CAPIF_HOSTNAME
+            - name: CAPIF_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: CAPIF_PORT
+            - name: CAPIF_PORT_HTTPS
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: CAPIF_PORT_HTTPS
+            - name: NEF_CALLBACK_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: NEF_CALLBACK_URL
+          ports:
+          - containerPort: 5000

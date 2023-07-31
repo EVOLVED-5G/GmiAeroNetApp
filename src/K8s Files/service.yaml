@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gmiaeroapp
+spec:
+  selector:
+    app: gmiaeroapp
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
