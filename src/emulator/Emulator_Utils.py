@@ -22,8 +22,8 @@ def get_token_for_nef_emulator() -> Token:
 
 def get_url_of_the_nef_emulator() -> str:
     #return "http://10.161.1.126:8888"              //Democritos
-    return "http://localhost:8888"               # //Local
-    #return os.getenv('NEF_ADDRESS')
+    #return "http://localhost:8888"               # //Local
+    return os.getenv('NEF_ADDRESS')
 
 def get_folder_path_for_certificated_and_capif_api_key()->str:
     """
