@@ -7,7 +7,6 @@ import os
 def qos_createQuarantedSubscription():
     netapp_id = str(os.getenv('NETAPP_ID'))
     qos_awereness = QosAwareness(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                 nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
                                  folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                  capif_host=Emulator_Utils.get_capif_host(),
                                  capif_https_port=Emulator_Utils.get_capif_https_port())
@@ -52,7 +51,6 @@ def qos_createQuarantedSubscription():
 def qos_createNoQuarantedSubscription():
     netapp_id = str(os.getenv('NETAPP_ID'))
     qos_awereness = QosAwareness(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                 nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
                                  folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                  capif_host=Emulator_Utils.get_capif_host(),
                                  capif_https_port=Emulator_Utils.get_capif_https_port())
@@ -91,7 +89,6 @@ def qos_deleteSubscription():
     # How to get all subscriptions
     netapp_id = str(os.getenv('NETAPP_ID'))
     qos_awareness = QosAwareness(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                 nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
                                  folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                  capif_host=Emulator_Utils.get_capif_host(),
                                  capif_https_port=Emulator_Utils.get_capif_https_port())

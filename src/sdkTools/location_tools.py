@@ -11,7 +11,6 @@ def location_getCellId(external_id :str):
     This function request the UE Cell location via the 5G-API
     """
     location_subscriber = LocationSubscriber(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                             nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
                                              folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                              capif_host=Emulator_Utils.get_capif_host(),
                                              capif_https_port=Emulator_Utils.get_capif_https_port())
@@ -25,8 +24,8 @@ def location_getLatAndLon(_cell_id :str):
     """
     This function request the coordonate of the cell
     """
+    """Old 2nd parameter : nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,"""
     location_subscriber = LocationSubscriber(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                             nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
                                              folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                              capif_host=Emulator_Utils.get_capif_host(),
                                              capif_https_port=Emulator_Utils.get_capif_https_port())
@@ -37,8 +36,7 @@ def create_single_request_for_location_info(external_id :str):
     """
     This function request the device Cell location via the 5G-API
     """
-    location_subscriber = LocationSubscriber(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                             nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
+    location_subscriber = LocationSubscriber(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),  
                                              folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                              capif_host=Emulator_Utils.get_capif_host(),
                                              capif_https_port=Emulator_Utils.get_capif_https_port())
@@ -55,7 +53,6 @@ def location_create_sub(external_id :str):
     expire_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=1)).isoformat() + "Z"
 
     location_subscriber = LocationSubscriber(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                             nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
                                              folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                              capif_host=Emulator_Utils.get_capif_host(),
                                              capif_https_port=Emulator_Utils.get_capif_https_port())
@@ -74,7 +71,6 @@ def location_create_sub(external_id :str):
 def location_delete_sub():
     # get all subscriptions
     location_subscriber = LocationSubscriber(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                             nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
                                              folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                              capif_host=Emulator_Utils.get_capif_host(),
                                              capif_https_port=Emulator_Utils.get_capif_https_port())

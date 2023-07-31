@@ -1,15 +1,12 @@
 from evolved5g.swagger_client.rest import ApiException
-
 from evolved5g.sdk import ConnectionMonitor
 from emulator import Emulator_Utils
 import datetime
-import time
 import os
 
 def connection_createSubscription():
     _netapp_id = str(os.getenv('NETAPP_ID'))
     connection_monitor = ConnectionMonitor(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                           nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
                                            folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                            capif_host=Emulator_Utils.get_capif_host(),
                                            capif_https_port=Emulator_Utils.get_capif_https_port()   )
@@ -39,7 +36,6 @@ def connection_createSubscription():
 def connection_deleteSubscription():
     netapp_id = str(os.getenv('NETAPP_ID'))
     connection_monitor = ConnectionMonitor(nef_url=Emulator_Utils.get_url_of_the_nef_emulator(),
-                                           nef_bearer_access_token= Emulator_Utils.get_token_for_nef_emulator().access_token,
                                            folder_path_for_certificates_and_capif_api_key=Emulator_Utils.get_folder_path_for_certificated_and_capif_api_key(),
                                            capif_host=Emulator_Utils.get_capif_host(),
                                            capif_https_port=Emulator_Utils.get_capif_https_port())

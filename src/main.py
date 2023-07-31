@@ -46,8 +46,10 @@ async def root():
 
 """ RETURN CELL ID AFTER SENDING AN UE ID """
 @app.get('/location_getCellID/{externalId}')
-async def root(externalId: str): 
+async def root(externalId: str):
+   print("Emulator URL : " + Emulator_Utils.get_url_of_the_nef_emulator()) 
    response = location_getCellId(externalId)
+   print("***********RESPONSE : " + str(response))
    returnStr = extractCellId(str(response))
    print("Cell ID for UE" , '\033[1m'  + externalId + '\033[0m',"requested : " + returnStr)
    return returnStr
