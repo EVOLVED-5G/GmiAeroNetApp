@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: gmiaeroapp
-          image: mosgmi/gmiaeroapp_app
+          image: mosgmi/gmiaeroapp:v1
           imagePullPolicy: Always 
           env:
             - name: NEF_ADDRESS
@@ -42,11 +42,11 @@ spec:
                 configMapKeyRef:
                   name: gmiaero-configmap
                   key: CAPIF_HOSTNAME
-            - name: CAPIF_PORT
+            - name: CAPIF_PORT_HTTP
               valueFrom:
                 configMapKeyRef:
                   name: gmiaero-configmap
-                  key: CAPIF_PORT
+                  key: CAPIF_PORT_HTTP
             - name: CAPIF_PORT_HTTPS
               valueFrom:
                 configMapKeyRef:
@@ -57,5 +57,20 @@ spec:
                 configMapKeyRef:
                   name: gmiaero-configmap
                   key: NEF_CALLBACK_URL
+            - name: NETAPP_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: NETAPP_PATH
+            - name: UE_REQUESTED_IP
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: UE_REQUESTED_IP
+            - name: ENVIRONEMENT_MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: gmiaero-configmap
+                  key: ENVIRONEMENT_MODE
           ports:
-          - containerPort: 5000
+          - containerPort: 8383

@@ -3,11 +3,15 @@ kind: ConfigMap
 metadata:
   name: gmiaero-configmap
 data:
-  NEF_ADDRESS: nefemu
+  NEF_ADDRESS: "https://nefemu:4443"
   NEF_USER: admin@my-email.com
   NEF_PASSWORD: pass
   PATH_TO_CERTS: /code/src/capif_onboarding
   CAPIF_HOSTNAME: capifcore
-  CAPIF_PORT: "8080"
+  CAPIF_PORT_HTTP: "8080"
   CAPIF_PORT_HTTPS: "443"
-  NEF_CALLBACK_URL: gmiaeroapp
+  NEF_CALLBACK_URL: "http://gmiaeroapp:8383/monitoring/callback"
+  NETAPP_PATH: /src
+  ENVIRONEMENT_MODE: development
+  UE_REQUESTED_IP: "10.0.0.1"
+  
