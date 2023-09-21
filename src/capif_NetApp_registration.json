@@ -13,5 +13,6 @@
   "crs_locality": "Chambery",
   "csr_state_or_province_name": "Chambery",
   "csr_country_name": "FR",
-  "csr_email_address": "Chambery@gmi-aero.com"
+  "csr_email_address": "Chambery@gmi-aero.com",
+  "environment_mode": "production"
 }
