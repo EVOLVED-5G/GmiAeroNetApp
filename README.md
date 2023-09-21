@@ -1,3 +1,7 @@
+V4.4
+----
+Using ENVIRONMENT_MODE variable
+
 V4.3
 ----
 Version using CAPIF v3.1.2 - NEF v2.2.2 - SDK v1.0.7 and K8s manifest files
