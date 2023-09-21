@@ -67,7 +67,7 @@ spec:
                 configMapKeyRef:
                   name: gmiaero-configmap
                   key: UE_REQUESTED_IP
-            - name: ENVIRONEMENT_MODE
+            - name: ENVIRONMENT_MODE
               valueFrom:
                 configMapKeyRef:
                   name: gmiaero-configmap
