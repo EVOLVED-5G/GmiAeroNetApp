@@ -71,6 +71,6 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: gmiaero-configmap
-                  key: ENVIRONEMENT_MODE
+                  key: ENVIRONMENT_MODE
           ports:
           - containerPort: 8383
